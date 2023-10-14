@@ -17,6 +17,11 @@ export const createRandomJobPost = () => {
 	};
 };
 
-export const positions = faker.helpers.multiple(createRandomJobPost, {
-    count: 30,
-});
+export const positions = (query) => {
+    const data =  faker.helpers.multiple(createRandomJobPost, {
+        count: 30,
+    });
+    return data
+        .filter(position => position.location.includes(query.location))
+        .filter(position => position.description.includes(query.description));
+};

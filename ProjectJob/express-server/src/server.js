@@ -13,7 +13,8 @@ app.get('/api', (req, res) => {
 
 app.get ('/api/jobs/positions', async (req, res) => {
     try {
-        const data = await positions;
+        const query = req.query;
+        const data = await positions(query);
         res.json(data);
     } catch (e) {
         console.error(e)
